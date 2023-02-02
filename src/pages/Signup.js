@@ -26,9 +26,9 @@ const Signup = () => {
   const [validLastname, setValidLastname] = useState(false);
   const [lastnameFocus, setLastnameFocus] = useState(false);
   /* CORREO */
-  const [mail, setMail] = useState('');
-  const [validMail, setValidMail] = useState(false);
-  const [mailFocus, setMailFocus] = useState(false);
+  const [email, setEmail] = useState('');
+  const [validEmail, setValidEmail] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
   /* TELEFONO */
   const [mobile, setMobile] = useState('');
   const [validMobile, setValidMobile] = useState(false);
@@ -45,22 +45,25 @@ const Signup = () => {
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
-useEffect(() => {
-    setValidFirstname(USER_REGEX.test(firstname));
-}, [firstname])
+  useEffect(() => {
+      setValidFirstname(USER_REGEX.test(firstname));
+  }, [firstname])
 
-useEffect(() => {
-    setValidPwd(PWD_REGEX.test(pwd));
-    setValidMatch(pwd === matchPwd);
-}, [pwd, matchPwd])
+  useEffect(() => {
+      setValidPwd(PWD_REGEX.test(pwd));
+      setValidMatch(pwd === matchPwd);
+  }, [pwd, matchPwd])
 
-useEffect(() => {
-    setErrMsg('');
-}, [firstname, pwd, matchPwd])
+  useEffect(() => {
+      setErrMsg('');
+  }, [firstname, pwd, matchPwd])
 
-  const handleSubmit = function(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("submit");
+    const v1 = USER_REGEX.test(firstname);
+    const v2 = PWD_REGEX.test(pwd);
+    console.log("v1 y v2", v1, v2);
   }
 
   return (
@@ -78,7 +81,6 @@ useEffect(() => {
                   type="text"
                   id="firstname"
                   placeholder="Primer Nombre"
-                  ref={userRef}
                   autoComplete="off"
                   onChange={(e) => setFirstname(e.target.value)}
                   value={firstname}
@@ -113,18 +115,41 @@ useEffect(() => {
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
                 {/* INPUT EMAIL */}
-                <CustomInput type="email" name="email" placeholder="Email"
-
+                <CustomInput  
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Correo"
+                  autoComplete="off"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  required
+                  aria-invalid={validEmail ? "false" : "true"}
+                  aria-describedby="mailidnote"
+                  onFocus={() => setEmailFocus(true)}
+                  onBlur={() => setEmailFocus(false)}
                 />
-                <p id="mailidnote" className={lastnameFocus && lastname && !validLastname ? "instructions" : "offscreen"}>
+                <p id="mailidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                   Error de Email
                 </p>
                 {/* INPUT MOBILE */}
-                <CustomInput
+                <CustomInput  
                   type="tel"
                   name="mobile"
-                  placeholder="Mobile Number"
+                  id="mobile"
+                  placeholder="Telefono"
+                  autoComplete="off"
+                  onChange={(e) => setMobile(e.target.value)}
+                  value={mobile}
+                  required
+                  aria-invalid={validMobile ? "false" : "true"}
+                  aria-describedby="mobileidnote"
+                  onFocus={() => setMobileFocus(true)}
+                  onBlur={() => setMobileFocus(false)}
                 />
+                <p id="mobileidnote" className={mobileFocus && mobile && !validMobile ? "instructions" : "offscreen"}>
+                  Error de Mobile
+                </p>
                 {/* INPUT PASSWORD */}
                 <CustomInput
                   type="password"

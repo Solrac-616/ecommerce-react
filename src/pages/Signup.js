@@ -16,10 +16,47 @@ const Signup = () => {
 
   const userRef = useRef();
   const errRef = useRef();
-
+  
+  /* PRIMER NOMBRE */
   const [firstname, setFirstname] = useState('');
   const [validFirstname, setValidFirstname] = useState(false);
   const [firstnameFocus, setFirstnameFocus] = useState(false);
+  /* SEGUNDO NOMBRE */
+  const [lastname, setLastname] = useState('');
+  const [validLastname, setValidLastname] = useState(false);
+  const [lastnameFocus, setLastnameFocus] = useState(false);
+  /* CORREO */
+  const [mail, setMail] = useState('');
+  const [validMail, setValidMail] = useState(false);
+  const [mailFocus, setMailFocus] = useState(false);
+  /* TELEFONO */
+  const [mobile, setMobile] = useState('');
+  const [validMobile, setValidMobile] = useState(false);
+  const [mobileFocus, setMobileFocus] = useState(false);
+  /* CONTRASEÑA */
+  const [pwd, setPwd] = useState('');
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
+  /* CONFIRMAR CONTRASEÑA */
+  const [matchPwd, setMatchPwd] = useState('');
+  const [validMatch, setValidMatch] = useState(false);
+  const [matchFocus, setMatchFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess] = useState(false);
+
+useEffect(() => {
+    setValidFirstname(USER_REGEX.test(firstname));
+}, [firstname])
+
+useEffect(() => {
+    setValidPwd(PWD_REGEX.test(pwd));
+    setValidMatch(pwd === matchPwd);
+}, [pwd, matchPwd])
+
+useEffect(() => {
+    setErrMsg('');
+}, [firstname, pwd, matchPwd])
 
   const handleSubmit = function(e) {
     e.preventDefault();
@@ -36,6 +73,7 @@ const Signup = () => {
             <div className="auth-card">
               <h3 className="text-center mb-3">Sign Up</h3>
               <form onSubmit={handleSubmit} className="d-flex flex-column gap-15">
+                {/* INPUT PRIMER NOMBRE */}
                 <CustomInput
                   type="text"
                   id="firstname"
@@ -46,7 +84,7 @@ const Signup = () => {
                   value={firstname}
                   required
                   aria-invalid={validFirstname ? "false" : "true"}
-                  aria-describedby="uidnote"
+                  aria-describedby="fnidnote"
                   onFocus={() => setFirstnameFocus(true)}
                   onBlur={() => setFirstnameFocus(false)}
                 />
@@ -55,17 +93,73 @@ const Signup = () => {
                     Must begin with a letter.<br />
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
-                <CustomInput type="email" name="email" placeholder="Email" />
+                {/* INPUT SEGUNDO NOMBRE */}
+                <CustomInput
+                  type="text"
+                  id="lastname"
+                  placeholder="Segundo Nombre"
+                  autoComplete="off"
+                  onChange={(e) => setLastname(e.target.value)}
+                  value={lastname}
+                  required
+                  aria-invalid={validLastname ? "false" : "true"}
+                  aria-describedby="lnidnote"
+                  onFocus={() => setLastnameFocus(true)}
+                  onBlur={() => setLastnameFocus(false)}
+                />
+                <p id="lnidnote" className={lastnameFocus && lastname && !validLastname ? "instructions" : "offscreen"}>
+                    4 to 24 characters.<br />
+                    Must begin with a letter.<br />
+                    Letters, numbers, underscores, hyphens allowed.
+                </p>
+                {/* INPUT EMAIL */}
+                <CustomInput type="email" name="email" placeholder="Email"
+
+                />
+                <p id="mailidnote" className={lastnameFocus && lastname && !validLastname ? "instructions" : "offscreen"}>
+                  Error de Email
+                </p>
+                {/* INPUT MOBILE */}
                 <CustomInput
                   type="tel"
                   name="mobile"
                   placeholder="Mobile Number"
                 />
+                {/* INPUT PASSWORD */}
                 <CustomInput
                   type="password"
-                  name="password"
-                  placeholder="Password"
+                  id="password"
+                  placeholder="Contraseña"
+                  onChange={(e) => setPwd(e.target.value)}
+                  value={pwd}
+                  required
+                  aria-invalid={validPwd ? "false" : "true"}
+                  aria-describedby="pwdnote"
+                  onFocus={() => setPwdFocus(true)}
+                  onBlur={() => setPwdFocus(false)}
                 />
+                <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                  8 to 24 characters.<br />
+                  Must include uppercase and lowercase letters, a number and a special character.<br />
+                  Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                </p>
+                {/* INPUT CONFIRM PASSWORD */}
+                <CustomInput
+                  type="password"
+                  id="confirm_pwd"
+                  placeholder="Confirmar Contraseña"
+                  onChange={(e) => setMatchPwd(e.target.value)}
+                  value={matchPwd}
+                  required
+                  aria-invalid={validMatch ? "false" : "true"}
+                  aria-describedby="confirmnote"
+                  onFocus={() => setMatchFocus(true)}
+                  onBlur={() => setMatchFocus(false)}
+                />
+                <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+                  Must match the first password input field.
+                </p>
+
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
                     <button className="button border-0">Sign Up</button>

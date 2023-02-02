@@ -14,14 +14,14 @@ const Header = () => {
           <div className="row">
             <div className="col-6">
               <p className="text-white mb-0">
-                Free Shipping Over $100 & Free Returns
+                Todos los envios al cargo de Rippley Go
               </p>
             </div>
             <div className="col-6">
-              <p className="text-end text-white mb-0">
-                Hotline:
-                <a className="text-white" href="tel:+91 8264954234">
-                  +91 8264954234
+              <p className="text-end text-white ml-1">
+                Website: 
+                <a className="text-white ml-2" href="https://rippley.net/">
+                   Rippley.net
                 </a>
               </p>
             </div>
@@ -33,7 +33,7 @@ const Header = () => {
           <div className="row align-items-center">
             <div className="col-2">
               <h2>
-                <Link className="text-white">Dev Corner</Link>
+                <Link to="/" className="text-white">Rippley</Link>
               </h2>
             </div>
             <div className="col-5">

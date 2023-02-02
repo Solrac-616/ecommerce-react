@@ -1,0 +1,67 @@
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+
+.loader-wrapper svg {
+    height: 200px;
+}
+
+.loader-wrapper svg .d {
+    stroke-dasharray: 436;
+    animation: strokeanimate 5.4s infinite ease-in-out;
+}
+
+@-webkit-keyframes strokeanimate {
+    0% {
+        stroke-dashoffset: 436;
+    }
+
+    70% {
+        stroke-dashoffset: 100;
+    }
+
+    80% {
+        stroke-dashoffset: 0;
+    }
+
+    97% {
+        stroke-dashoffset: 436;
+    }
+
+    100% {
+        stroke-dashoffset: 436;
+    }
+
+}
+
+@keyframes strokeanimate {
+    0% {
+        stroke-dashoffset: 436;
+    }
+
+    70% {
+        stroke-dashoffset: 100;
+    }
+
+    80% {
+        stroke-dashoffset: 0;
+    }
+
+    97% {
+        stroke-dashoffset: 436;
+    }
+
+    100% {
+        stroke-dashoffset: 436;
+    }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsLinkedin, BsGithub, BsYoutube, BsInstagram } from "react-icons/bs";
+import { BsLinkedin, BsFacebook, BsYoutube, BsInstagram, BsTwitter } from "react-icons/bs";
 import newsletter from "../images/newsletter.png";
 const Footer = () => {
   return (
@@ -54,17 +54,20 @@ const Footer = () => {
                   navdeepdahiya753@gmail.com
                 </a>
                 <div className="social_icons d-flex align-items-center gap-30 mt-4">
-                  <a className="text-white" href="#">
-                    <BsLinkedin className="fs-4" />
-                  </a>
-                  <a className="text-white" href="#">
+                  <a className="text-white" href="https://instagram.com/rippleyesotalisto?igshid=YmMyMTA2M2Y=" target="_blank" rel="noreferrer">
                     <BsInstagram className="fs-4" />
                   </a>
-                  <a className="text-white" href="#">
-                    <BsGithub className="fs-4" />
+                  <a className="text-white" href="https://www.facebook.com/rippleyesotalisto" target="_blank" rel="noreferrer">
+                    <BsFacebook className="fs-4" />
                   </a>
-                  <a className="text-white" href="#">
+                  <a className="text-white" href="http://www.youtube.com/@rippleyesotalisto/" target="_blank" rel="noreferrer">
                     <BsYoutube className="fs-4" />
+                  </a>
+                  <a className="text-white" href="https://twitter.com/Rippleyve?t=Cy1dKuocNYkY_mf3n1m-pw&s=09" target="_blank" rel="noreferrer">
+                    <BsTwitter className="fs-4" />
+                  </a>
+                  <a className="text-white" href="http://www.linkedin.com/company/rippley-esotalisto" target="_blank" rel="noreferrer">
+                    <BsLinkedin className="fs-4" />
                   </a>
                 </div>
               </div>

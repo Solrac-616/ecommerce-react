@@ -3,7 +3,6 @@ import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import { Link } from "react-router-dom";
 import Container from "../components/Container";
-import CustomInput from "../components/CustomInput";
 import Swal from "sweetalert2";
 import axios from '../functions/authfunctions';
 
@@ -67,7 +66,7 @@ const Signup = () => {
       setValidPwd(PWD_REGEX.test(pwd));
       setValidMatch(pwd === matchPwd);
   }, [pwd, matchPwd])
-  
+  /* VALIDAR CONTRASEÑA 2 */
   useEffect(() => {
       setErrMsg('');
   }, [firstname, pwd, matchPwd])
@@ -160,11 +159,11 @@ const Signup = () => {
                     Debe comenzar con Mayuscula.<br />
                     Sin espacios
                 </p>
-                {/* INPUT SEGUNDO NOMBRE */}
+                {/* INPUT APELLIDO */}
                 <input
                   type="text"
                   id="lastname"
-                  placeholder="Segundo Nombre"
+                  placeholder="Apellido"
                   autoComplete="off"
                   onChange={(e) => setLastname(e.target.value)}
                   value={lastname}
@@ -261,7 +260,7 @@ const Signup = () => {
 
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                    <button disabled={!validFirstname || !validLastname || !validEmail || !validMobile || !validPwd || !validMatch ? true : false} className="button border-0">Sign Up</button>
+                    <button disabled={!validFirstname || !validLastname || !validEmail || !validMobile || !validPwd || !validMatch ? true : false} className="button border-0">Registrar</button>
                   </div>
                 </div>
               </form>

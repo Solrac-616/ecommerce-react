@@ -8,10 +8,10 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from '../functions/authfunctions';
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const USER_REGEX = /^[A-Z][A-z]{1,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
-const MOBILE_REGEX = /^[0]?[789]\d{11}$/;
+const MOBILE_REGEX = /^\d{11}$/ ;
 const REGISTER_URL = '/register';
 
 const Signup = () => {
@@ -61,8 +61,8 @@ const Signup = () => {
   }, [email])
   /* VALIDAR TELEFONO */
   useEffect(() => {
-    setValidEmail(EMAIL_REGEX.test(email));
-  }, [email])
+    setValidMobile(MOBILE_REGEX.test(mobile));
+  }, [mobile])
   /* VALIDAR CONTRASEÑA */
   useEffect(() => {
       setValidPwd(PWD_REGEX.test(pwd));
@@ -108,9 +108,9 @@ const Signup = () => {
                   onBlur={() => setFirstnameFocus(false)}
                 />
                 <p id="fnidnote" className={firstnameFocus && firstname && !validFirstname ? "instructions" : "offscreen"}>
-                    4 to 24 characters.<br />
-                    Must begin with a letter.<br />
-                    Letters, numbers, underscores, hyphens allowed.
+                    Entre 2 y 24 letras.<br />
+                    Debe comenzar con Mayuscula.<br />
+                    Sin espacios
                 </p>
                 {/* INPUT SEGUNDO NOMBRE */}
                 <input
@@ -128,9 +128,9 @@ const Signup = () => {
                   onBlur={() => setLastnameFocus(false)}
                 />
                 <p id="lnidnote" className={lastnameFocus && lastname && !validLastname ? "instructions" : "offscreen"}>
-                    4 to 24 characters.<br />
-                    Must begin with a letter.<br />
-                    Letters, numbers, underscores, hyphens allowed.
+                    Entre 2 y 24 letras.<br />
+                    Debe comenzar con Mayuscula.<br />
+                    Sin espacios
                 </p>
                 {/* INPUT EMAIL */}
                 <input  
@@ -149,7 +149,9 @@ const Signup = () => {
                   onBlur={() => setEmailFocus(false)}
                 />
                 <p id="mailidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
-                  Error de Email
+                  Escriba su correo en minuscula sin espacios <br />
+                  ejemplo: <br />
+                  correo@gmail.com
                 </p>
                 {/* INPUT MOBILE */}
                 <input  
@@ -168,7 +170,9 @@ const Signup = () => {
                   onBlur={() => setMobileFocus(false)}
                 />
                 <p id="mobileidnote" className={mobileFocus && mobile && !validMobile ? "instructions" : "offscreen"}>
-                  Error de Mobile
+                  Numero de telefono din espacios <br />
+                  ejemplo: <br />
+                  04241112233
                 </p>
                 {/* INPUT PASSWORD */}
                 <input
@@ -185,9 +189,9 @@ const Signup = () => {
                   onBlur={() => setPwdFocus(false)}
                 />
                 <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                  8 to 24 characters.<br />
-                  Must include uppercase and lowercase letters, a number and a special character.<br />
-                  Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                Entre 8 a 24 letras.<br />
+                  Debe incluir letras mayúsculas y minúsculas, un número y un carácter especial.<br />
+                  Caracteres especiales permitidos: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                 </p>
                 {/* INPUT CONFIRM PASSWORD */}
                 <input
@@ -204,12 +208,12 @@ const Signup = () => {
                   onBlur={() => setMatchFocus(false)}
                 />
                 <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
-                  Must match the first password input field.
+                  Debe coincidir con el primer campo de entrada de contraseña.
                 </p>
 
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
-                    <button className="button border-0">Sign Up</button>
+                    <button disabled={!validFirstname || !validLastname || !validEmail || !validMobile || !validPwd || !validMatch ? true : false} className="button border-0">Sign Up</button>
                   </div>
                 </div>
               </form>

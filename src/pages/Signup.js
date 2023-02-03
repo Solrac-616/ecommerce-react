@@ -12,7 +12,7 @@ const USER_REGEX = /^[A-Z][A-z]{1,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 const MOBILE_REGEX = /^\d{11}$/ ;
-const REGISTER_URL = '/register';
+const REGISTER_URL = '/user/auth/register';
 
 const Signup = () => {
 
@@ -77,8 +77,47 @@ const Signup = () => {
     e.preventDefault();
     console.log("submit");
     const v1 = USER_REGEX.test(firstname);
-    const v2 = PWD_REGEX.test(pwd);
-    console.log("v1 y v2", v1, v2);
+    const v2 = USER_REGEX.test(lastname);
+    const v3 = EMAIL_REGEX.test(email);
+    const v4 = MOBILE_REGEX.test(mobile);
+    const v5 = PWD_REGEX.test(pwd);
+    const password = pwd;
+    console.log("v1:", v1, "v2:", v2, "v3:", v3, "v4:", v4, "v5:", v5);
+    if (!v1 || !v2 || !v3 || !v4 || !v5) {
+        setErrMsg("Campos Invalidos");
+        return;
+    }
+    try {
+        const response = await axios.post(REGISTER_URL,
+        {
+            "firstname": firstname,
+            "lastname": lastname,
+            "email": email,
+            "mobile": mobile,
+            "password": password
+        }
+        );
+        console.log(response?.data);
+        console.log(response?.accessToken);
+        console.log(JSON.stringify(response))
+        setSuccess(true);
+        //clear state and controlled inputs
+        //need value attrib on inputs for this
+        setFirstname('');
+        setLastname('');
+        setEmail('');
+        setMobile('');
+        setPwd('');
+        setMatchPwd('');
+    } catch (err) {
+        if (!err?.response) {
+            setErrMsg('Error: servidor no responde');
+        } else if (err.response?.status === 409) {
+            setErrMsg('Usuario ya registrado');
+        } else {
+            setErrMsg('Fallo en el registro')
+        }
+    }
   }
 
   return (

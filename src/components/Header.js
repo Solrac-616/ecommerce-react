@@ -6,10 +6,10 @@ import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
-const Header = () => {
+const Header = ({isScrolling}) => {
   return (
-    <>
-      <header className="header-top-strip py-3">
+    <header>
+      <section className="header-top-strip py-3">
         <div className="container-xxl">
           <div className="row">
             <div className="col-6">
@@ -27,8 +27,8 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </header>
-      <header className="header-upper py-3">
+      </section>
+      <section className="header-upper py-3">
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-2">
@@ -101,8 +101,8 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </header>
-      <header className="header-bottom py-3">
+      </section>
+      <section className="header-bottom py-3">
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
@@ -155,8 +155,8 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </header>
-    </>
+      </section>
+    </header>
   );
 };
 

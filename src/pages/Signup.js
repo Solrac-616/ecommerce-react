@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import axios from '../functions/authfunctions';
 
 const USER_REGEX = /^[A-Z][A-z]{1,23}$/;
@@ -89,14 +88,23 @@ const Signup = () => {
     }
     try {
         const response = await axios.post(REGISTER_URL,
-        {
+          {
             "firstname": firstname,
             "lastname": lastname,
             "email": email,
             "mobile": mobile,
             "password": password
-        }
+          }
         );
+        if (response) {
+          Swal.fire({
+            icon: 'success',
+            title: "Eso ta' listo",
+            text: 'Tus datos se han registrado con exito',
+            confirmButtonText: `<a href='http://localhost:3000/login' style='color: #fff; text-decoration: none;'>Ingresar</a>`,
+
+          })
+        }
         console.log(response?.data);
         console.log(response?.accessToken);
         console.log(JSON.stringify(response))
@@ -109,6 +117,7 @@ const Signup = () => {
         setMobile('');
         setPwd('');
         setMatchPwd('');
+        
     } catch (err) {
         if (!err?.response) {
             setErrMsg('Error: servidor no responde');

@@ -4,8 +4,8 @@ import { BsLinkedin, BsFacebook, BsYoutube, BsInstagram, BsTwitter } from "react
 import newsletter from "../images/newsletter.png";
 const Footer = () => {
   return (
-    <>
-      <footer className="py-4">
+    <footer>
+      <section className="py-4">
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-5">
@@ -30,8 +30,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </footer>
-      <footer className="py-4">
+      </section>
+      <section className="py-4">
         <div className="container-xxl">
           <div className="row">
             <div className="col-4">
@@ -109,8 +109,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </footer>
-      <footer className="py-4">
+      </section>
+      <section className="py-4">
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
@@ -120,8 +120,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </footer>
-    </>
+      </section>
+    </footer>
   );
 };
 

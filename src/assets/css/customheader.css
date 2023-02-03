@@ -1,0 +1,124 @@
+
+/* Header Part */
+.header-top-strip {
+  border-bottom: 1px solid var(--color-3b4149);
+  background-color: var(--color-131921);
+}
+.header-upper,
+.header-fixed {
+  background-color: var(--color-131921);
+}
+.header-upper .row,
+.header-fixed .row
+{
+    display: grid;
+    grid-template-columns: 2fr 5fr 5fr;
+    grid-template-rows: 1fr;
+}
+.header-bottom {
+  background-color: var(--color-232f3e);
+}
+.header-upper .input-group-text,
+.header-fixed .input-group-text {
+  background-color: var(--color-febd69);
+}
+.header-upper.header-upper-links img,
+.header-fixed.header-upper-links img {
+  width: 35px;
+  height: 35px;
+}
+.rippley-nav-logo
+{
+  height: 50px;
+}
+.header-bottom .menu-links a,
+.header-bottom .dropdown button {
+  color: white;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0.3;
+  text-transform: uppercase;
+}
+
+.header-bottom .dropdown button:focus {
+  box-shadow: none;
+}
+.header-bottom .dropdown-menu {
+  background-color: var(--color-131921);
+  width: 100%;
+  transform: translate3d(0px, 57px, 0px) !important;
+}
+.header-bottom .dropdown-item {
+  padding: 20px;
+  margin-bottom: 3px;
+  border-bottom: 1px solid var(--color-3b4149);
+}
+.header-bottom .dropdown-item:hover {
+  background-color: transparent;
+  color: var(--color-febd69) !important;
+}
+
+.header-fixed
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: .5s;
+  width: 100%;
+  transform: translate(0px, -100%);
+  z-index: 999;
+}
+
+.navscrolling
+{
+  transform: translate(0px, 0px) !important;
+}
+
+.mobile-sidebar
+{
+  background-color: #00000085;
+  border-radius: 20px;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(-100% - 10px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 240px;
+  padding: 15px 15px;
+  transition: .5s all;
+  z-index: 99999;
+}
+
+.sidebar-show
+{
+  transform: translateX(-50%) translateY(calc(0% - 0px)) !important;
+}
+
+@media screen and (min-width: 900px) 
+{
+  .burger
+  {
+      display: none !important;
+  }
+
+}
+
+
+@media screen and (max-width: 900px) 
+{
+    .header-upper .row,
+    .header-fixed .row
+    {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .col-nr2,
+    .col-nr3
+    {
+        display: none;
+    }
+}

@@ -1,6 +1,6 @@
-import cart from "../images/cart.svg";
+import lognav1 from "../images/Rippley/logo-menu-rippley1.png";
 
 
 export default{
-    cart
+    lognav1
 };

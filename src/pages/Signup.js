@@ -10,13 +10,15 @@ import axios from '../functions/authfunctions';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /\S+@\S+\.\S+/;
+const MOBILE_REGEX = /^[0]?[789]\d{11}$/;
 const REGISTER_URL = '/register';
 
 const Signup = () => {
 
   const userRef = useRef();
   const errRef = useRef();
-  
+
   /* PRIMER NOMBRE */
   const [firstname, setFirstname] = useState('');
   const [validFirstname, setValidFirstname] = useState(false);
@@ -45,15 +47,28 @@ const Signup = () => {
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
+  /* VALIDAR PRIMER NOMBRE */
   useEffect(() => {
-      setValidFirstname(USER_REGEX.test(firstname));
+    setValidFirstname(USER_REGEX.test(firstname));
   }, [firstname])
-
+  /* VALIDAR SEGUNDO NOMBRE */
+  useEffect(() => {
+    setValidLastname(USER_REGEX.test(lastname));
+  }, [lastname])
+  /* VALIDAR EMAIL */
+  useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(email));
+  }, [email])
+  /* VALIDAR TELEFONO */
+  useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(email));
+  }, [email])
+  /* VALIDAR CONTRASEÑA */
   useEffect(() => {
       setValidPwd(PWD_REGEX.test(pwd));
       setValidMatch(pwd === matchPwd);
   }, [pwd, matchPwd])
-
+  
   useEffect(() => {
       setErrMsg('');
   }, [firstname, pwd, matchPwd])
@@ -76,8 +91,9 @@ const Signup = () => {
             <div className="auth-card">
               <h3 className="text-center mb-3">Sign Up</h3>
               <form onSubmit={handleSubmit} className="d-flex flex-column gap-15">
+                
                 {/* INPUT PRIMER NOMBRE */}
-                <CustomInput
+                <input
                   type="text"
                   id="firstname"
                   placeholder="Primer Nombre"
@@ -85,6 +101,7 @@ const Signup = () => {
                   onChange={(e) => setFirstname(e.target.value)}
                   value={firstname}
                   required
+                  className="form-control"
                   aria-invalid={validFirstname ? "false" : "true"}
                   aria-describedby="fnidnote"
                   onFocus={() => setFirstnameFocus(true)}
@@ -96,7 +113,7 @@ const Signup = () => {
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
                 {/* INPUT SEGUNDO NOMBRE */}
-                <CustomInput
+                <input
                   type="text"
                   id="lastname"
                   placeholder="Segundo Nombre"
@@ -104,6 +121,7 @@ const Signup = () => {
                   onChange={(e) => setLastname(e.target.value)}
                   value={lastname}
                   required
+                  className="form-control"
                   aria-invalid={validLastname ? "false" : "true"}
                   aria-describedby="lnidnote"
                   onFocus={() => setLastnameFocus(true)}
@@ -115,7 +133,7 @@ const Signup = () => {
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
                 {/* INPUT EMAIL */}
-                <CustomInput  
+                <input  
                   type="email"
                   name="email"
                   id="email"
@@ -124,6 +142,7 @@ const Signup = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   required
+                  className="form-control"
                   aria-invalid={validEmail ? "false" : "true"}
                   aria-describedby="mailidnote"
                   onFocus={() => setEmailFocus(true)}
@@ -133,7 +152,7 @@ const Signup = () => {
                   Error de Email
                 </p>
                 {/* INPUT MOBILE */}
-                <CustomInput  
+                <input  
                   type="tel"
                   name="mobile"
                   id="mobile"
@@ -142,6 +161,7 @@ const Signup = () => {
                   onChange={(e) => setMobile(e.target.value)}
                   value={mobile}
                   required
+                  className="form-control"
                   aria-invalid={validMobile ? "false" : "true"}
                   aria-describedby="mobileidnote"
                   onFocus={() => setMobileFocus(true)}
@@ -151,13 +171,14 @@ const Signup = () => {
                   Error de Mobile
                 </p>
                 {/* INPUT PASSWORD */}
-                <CustomInput
+                <input
                   type="password"
                   id="password"
                   placeholder="Contraseña"
                   onChange={(e) => setPwd(e.target.value)}
                   value={pwd}
                   required
+                  className="form-control"
                   aria-invalid={validPwd ? "false" : "true"}
                   aria-describedby="pwdnote"
                   onFocus={() => setPwdFocus(true)}
@@ -169,13 +190,14 @@ const Signup = () => {
                   Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                 </p>
                 {/* INPUT CONFIRM PASSWORD */}
-                <CustomInput
+                <input
                   type="password"
                   id="confirm_pwd"
                   placeholder="Confirmar Contraseña"
                   onChange={(e) => setMatchPwd(e.target.value)}
                   value={matchPwd}
                   required
+                  className="form-control"
                   aria-invalid={validMatch ? "false" : "true"}
                   aria-describedby="confirmnote"
                   onFocus={() => setMatchFocus(true)}

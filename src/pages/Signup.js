@@ -101,12 +101,11 @@ const Signup = () => {
             title: "Eso ta' listo",
             text: 'Tus datos se han registrado con exito',
             confirmButtonText: `<a href='http://localhost:3000/login' style='color: #fff; text-decoration: none;'>Ingresar</a>`,
-
           })
         }
-        console.log(response?.data);
-        console.log(response?.accessToken);
-        console.log(JSON.stringify(response))
+        // console.log(response?.data);
+        // console.log(response?.accessToken);
+        // console.log(JSON.stringify(response))
         setSuccess(true);
         //clear state and controlled inputs
         //need value attrib on inputs for this
@@ -119,11 +118,27 @@ const Signup = () => {
         
     } catch (err) {
         if (!err?.response) {
-            setErrMsg('Error: servidor no responde');
-        } else if (err.response?.status === 409) {
+          Swal.fire({
+            icon: 'error',
+            title: "Lo sentimos",
+            text: `El servidor no responde, lo resolveremos lo mas pronto posible`,
+            confirmButtonText: `<a href='http://localhost:3000/' style='color: #fff; text-decoration: none;'>ok</a>` 
+          })
+        }
+        if (err.response.status === 500 ) {
             setErrMsg('Usuario ya registrado');
+            Swal.fire({
+              icon: 'error',
+              title: "Lo sentimos",
+              text: `Usuario ya registrado, Error ${err.response.status}, ${err.response.data.message}`,  
+            })
         } else {
             setErrMsg('Fallo en el registro')
+            Swal.fire({
+              icon: 'error',
+              title: "Lo sentimos",
+              text: `Algo salio mal, Error ${err.response.status}, ${err.response.data.message}` ,  
+            })
         }
     }
   }

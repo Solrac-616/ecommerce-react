@@ -69,18 +69,26 @@ const Login = () => {
         //clear state and controlled inputs
         //need value attrib on inputs for this
         
-        //setEmail('');
-        //setPwd('');
+        setEmail('');
+        setPwd('');
     } catch (err) {
         if (!err?.response) {
-            setErrMsg('Error: servidor no responde');
-        } else if (err.response?.status === 409) {
-            setErrMsg('Usuario no existe');
+          Swal.fire({
+            icon: 'error',
+            title: "Lo sentimos",
+            text: `El servidor no responde, lo resolveremos lo mas pronto posible`,
+            confirmButtonText: `<a href='http://localhost:3000/' style='color: #fff; text-decoration: none;'>ok</a>` 
+          })
         } else {
-            setErrMsg('Fallo en al iniciar sesion')
+            setErrMsg('Fallo en al iniciar sesion');
+            Swal.fire({
+              icon: 'error',
+              title: "Lo sentimos",
+              text: `${err.response.data.message}` ,  
+            })
         }
-        console.log("ERROR:", errMsg);
-        console.log("err data:", err.data)
+        // console.log("ERROR:", errMsg);
+        // console.log("err data:", err)
     }
   }
 

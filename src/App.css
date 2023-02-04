@@ -699,3 +699,10 @@ footer section .input-group-text {
   color: var(--color-777777);
 }
 /* Shipping page ends here */
+
+/*SWEET ALERT*/
+.swal2-popup
+{
+  border-radius: 35px !important;
+}
+/*SWEET ALERT*/

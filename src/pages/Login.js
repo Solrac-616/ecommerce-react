@@ -57,7 +57,7 @@ const Login = () => {
             icon: 'success',
             title: "Eso ta' listo",
             text: `Bienvenido ${response.data.firstname}`,
-            confirmButtonText: `<a href='http://localhost:3000' style='color: #fff; text-decoration: none;'>Continuar</a>`,
+            confirmButtonText: `<a href='http://192.168.1.149:3000' style='color: #fff; text-decoration: none;'>Continuar</a>`,
 
           })
         }
@@ -77,7 +77,7 @@ const Login = () => {
             icon: 'error',
             title: "Lo sentimos",
             text: `El servidor no responde, lo resolveremos lo mas pronto posible`,
-            confirmButtonText: `<a href='http://localhost:3000/' style='color: #fff; text-decoration: none;'>ok</a>` 
+            confirmButtonText: `<a href='http://192.168.1.149:3000/' style='color: #fff; text-decoration: none;'>ok</a>` 
           })
         } else {
             setErrMsg('Fallo en al iniciar sesion');

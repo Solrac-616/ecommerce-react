@@ -66,7 +66,7 @@ const Signup = () => {
       setValidPwd(PWD_REGEX.test(pwd));
       setValidMatch(pwd === matchPwd);
   }, [pwd, matchPwd])
-  /* VALIDAR CONTRASEÑA 2 */
+  
   useEffect(() => {
       setErrMsg('');
   }, [firstname, pwd, matchPwd])
@@ -100,7 +100,7 @@ const Signup = () => {
             icon: 'success',
             title: "Eso ta' listo",
             text: 'Tus datos se han registrado con exito',
-            confirmButtonText: `<a href='http://localhost:3000/login' style='color: #fff; text-decoration: none;'>Ingresar</a>`,
+            confirmButtonText: `<a href='http://192.168.1.149:3000/login' style='color: #fff; text-decoration: none;'>Ingresar</a>`,
           })
         }
         // console.log(response?.data);
@@ -122,7 +122,7 @@ const Signup = () => {
             icon: 'error',
             title: "Lo sentimos",
             text: `El servidor no responde, lo resolveremos lo mas pronto posible`,
-            confirmButtonText: `<a href='http://localhost:3000/' style='color: #fff; text-decoration: none;'>ok</a>` 
+            confirmButtonText: `<a href='http://192.168.1.149:3000/' style='color: #fff; text-decoration: none;'>ok</a>` 
           })
         }
         if (err.response.status === 500 ) {

@@ -6,6 +6,7 @@ import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import Swal from "sweetalert2";
 import axios from '../functions/authfunctions';
+import {setAuthToken} from "../functions/tokenactions.js"
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -63,9 +64,12 @@ const Login = () => {
         }
         console.log("Response:", response);
         console.log("Response data:", response?.data);
-        console.log("Response token:", response?.accessToken);
         console.log("Response json:", JSON.stringify(response))
         setSuccess(true);
+
+        setAuthToken(response.data.token)
+        
+        //localStorage.removeItem('token');
         //clear state and controlled inputs
         //need value attrib on inputs for this
         

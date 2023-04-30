@@ -54,6 +54,7 @@ const Forgotpassword = () => {
         console.log("Response token:", response?.accessToken);
         console.log("Response json:", JSON.stringify(response))
         setSuccess(true);
+        localStorage.setItem('resettoken', response.data.token)
         //clear state and controlled inputs
         //need value attrib on inputs for this
         

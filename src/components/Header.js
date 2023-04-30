@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {React, useRef, useState, useEffect} from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import compare from "../images/compare.svg";
@@ -7,6 +7,10 @@ import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
 import images from "../constants/index.jsx"
+
+
+
+
 const Header = ({isScrolling}) => {
 
   const [open, setOpen] = useState(false);
@@ -15,6 +19,10 @@ const Header = ({isScrolling}) => {
     setOpen(!open)
   }
 
+
+  /* Sesion */
+  const [token, setToken] = useState(false);
+  
   return (
     <header className="header-rippley-ecommerce">
       <section className="header-top-strip py-3">
@@ -79,13 +87,17 @@ const Header = ({isScrolling}) => {
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    to="/login"
-                    className="d-flex align-items-center gap-10 text-white"
-                  >
-                    <img src={user} alt="user" />
-                    
-                  </Link>
+                  {token ? 
+                    (
+                      <Link to="/" className="d-flex align-items-center gap-10 text-white">
+                        <img src={compare} alt="user" /> 
+                      </Link>
+                    )  : (
+                      <Link to="/login" className="d-flex align-items-center gap-10 text-white">
+                        <img src={user} alt="user" />
+                      </Link>
+                    )
+                  }
                 </div>
                 <div>
                   <Link
@@ -214,13 +226,17 @@ const Header = ({isScrolling}) => {
                   </Link>
                 </div>
                 <div>
-                  <Link
-                    to="/login"
-                    className="d-flex align-items-center gap-10 text-white"
-                  >
-                    <img src={user} alt="user" />
-                    
-                  </Link>
+                  {token ? 
+                    (
+                      <Link to="/" className="d-flex align-items-center gap-10 text-white">
+                        <img src={compare} alt="user" /> 
+                      </Link>
+                    )  : (
+                      <Link to="/login" className="d-flex align-items-center gap-10 text-white">
+                        <img src={user} alt="user" />
+                      </Link>
+                    )
+                  }
                 </div>
                 <div>
                   <Link
@@ -272,13 +288,19 @@ const Header = ({isScrolling}) => {
           </Link>
         </div>
         <div>
-          <Link
-            to="/login"
-            className="d-flex align-items-center gap-10 text-white"
-          >
-            <img src={user} alt="user" />
-            
-          </Link>
+          
+          {token ? 
+            (
+              <Link to="/" className="d-flex align-items-center gap-10 text-white">
+                <img src={compare} alt="user" /> 
+              </Link>
+            )  : (
+              <Link to="/login" className="d-flex align-items-center gap-10 text-white">
+                <img src={user} alt="user" />
+              </Link>
+            )
+          }
+                    
         </div>
         <div>
           <Link
